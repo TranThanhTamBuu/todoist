@@ -1,4 +1,4 @@
-import { Button, Header } from "ui";
+import { Button, Header } from "@todoist/ui";
 
 export default function Page(): JSX.Element {
   return (
