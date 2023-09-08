@@ -1,27 +1,25 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigService } from '@todoist/ddd';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { ConfigModule } from '../config/config.module';
+import { ConfigSchema } from '../config/config.schema';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
+      inject: [ConfigService<ConfigSchema>],
+      useFactory: (configService: ConfigService<ConfigSchema>) => ({
         type: 'postgres',
-        host: configService.get('DOCUMENT_DATABASE_HOST'),
-        port: Number.parseInt(
-          configService.get('DOCUMENT_DATABASE_PORT') ?? '5432',
-          10,
-        ),
-        username: configService.get('DOCUMENT_DATABASE_USER'),
-        password: configService.get('DOCUMENT_DATABASE_PASSWORD'),
-        database: configService.get('DOCUMENT_DATABASE_NAME'),
+        host: configService.get('PLATFORM_DATABASE_HOST'),
+        port: Number.parseInt(configService.get('PLATFORM_DATABASE_PORT'), 10),
+        username: configService.get('PLATFORM_DATABASE_USER'),
+        password: configService.get('PLATFORM_DATABASE_PASSWORD'),
+        database: configService.get('PLATFORM_DATABASE_NAME'),
         namingStrategy: new SnakeNamingStrategy(),
         logging:
-          configService.get('DOCUMENT_DATABASE_VERBOSE') === 'true'
+          configService.get('PLATFORM_DATABASE_VERBOSE') === 'true'
             ? ['query', 'error']
             : false,
         logger: 'advanced-console',
