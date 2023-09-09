@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigService } from '@todoist/ddd';
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { ConfigSchema } from '../config/config.schema';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { SnakeNamingStrategy } from "typeorm-naming-strategies";
+
+import { ConfigService } from "@todoist/ddd";
+
+import { ConfigSchema } from "../config/config.schema";
 
 @Module({
   imports: [
@@ -11,18 +13,15 @@ import { ConfigSchema } from '../config/config.schema';
       imports: [ConfigModule],
       inject: [ConfigService<ConfigSchema>],
       useFactory: (configService: ConfigService<ConfigSchema>) => ({
-        type: 'postgres',
-        host: configService.get('PLATFORM_DATABASE_HOST'),
-        port: Number.parseInt(configService.get('PLATFORM_DATABASE_PORT'), 10),
-        username: configService.get('PLATFORM_DATABASE_USER'),
-        password: configService.get('PLATFORM_DATABASE_PASSWORD'),
-        database: configService.get('PLATFORM_DATABASE_NAME'),
+        type: "postgres",
+        host: configService.get("PLATFORM_DATABASE_HOST"),
+        port: Number.parseInt(configService.get("PLATFORM_DATABASE_PORT"), 10),
+        username: configService.get("PLATFORM_DATABASE_USER"),
+        password: configService.get("PLATFORM_DATABASE_PASSWORD"),
+        database: configService.get("PLATFORM_DATABASE_NAME"),
         namingStrategy: new SnakeNamingStrategy(),
-        logging:
-          configService.get('PLATFORM_DATABASE_VERBOSE') === 'true'
-            ? ['query', 'error']
-            : false,
-        logger: 'advanced-console',
+        logging: configService.get("PLATFORM_DATABASE_VERBOSE") === "true" ? ["query", "error"] : false,
+        logger: "advanced-console",
         synchronize: false,
         dropSchema: false,
         migrationsRun: true,

@@ -1,0 +1,9 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrderParserPlugins": ["typescript", "decorators-legacy", "jsx"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@todoist/(.*)$", "^src/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "trailingComma": "all",
+  "printWidth": 130
+}

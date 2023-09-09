@@ -1,8 +1,6 @@
-import {
-  BASE_CONFIG_VALIDATION_SCHEMA_MAP,
-  BaseConfigSchema,
-} from '@todoist/ddd';
-import Joi from 'joi';
+import Joi from "joi";
+
+import { BASE_CONFIG_VALIDATION_SCHEMA_MAP, BaseConfigSchema } from "@todoist/ddd";
 
 export interface ConfigSchema extends BaseConfigSchema {
   PLATFORM_DATABASE_HOST: string;
