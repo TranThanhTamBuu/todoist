@@ -4,4 +4,6 @@ import { PersonalWorkspace } from "../../domain/entities/personal-workspace";
 
 export const PERSONAL_WORKSPACE_REPOSITORY = Symbol();
 
-export interface PersonalWorkspaceRepository extends Repository<PersonalWorkspace> {}
+export interface PersonalWorkspaceRepository extends Repository<PersonalWorkspace> {
+  findOneByOwnerId(ownerId: string): Promise<PersonalWorkspace | null>;
+}

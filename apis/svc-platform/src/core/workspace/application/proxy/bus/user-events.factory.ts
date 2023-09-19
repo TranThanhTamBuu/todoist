@@ -17,7 +17,7 @@ export class UserEventsFactory {
     ]);
   }
 
-  async createFrom(event: IEvent): Promise<DomainEvent[]> {
+  async createFrom(event: IEvent): Promise<DomainEvent> {
     const eventMapper = this.externalEventToDomainEvent.get(event.constructor.name);
 
     // Defensive Programming, this should never happen

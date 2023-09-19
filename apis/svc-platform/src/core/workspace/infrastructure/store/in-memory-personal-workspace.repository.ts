@@ -14,4 +14,9 @@ export class InMemoryPersonalWorkspaceRepository
   constructor(@Inject(PERSONAL_WORKSPACE_FIXTURES) private readonly personalWorkspaceFixtures: PersonalWorkspace[]) {
     super(personalWorkspaceFixtures);
   }
+
+  async findOneByOwnerId(ownerId: string): Promise<PersonalWorkspace | null> {
+    const personalWorkspace = this.toArray().find((personalWorkspace) => personalWorkspace.ownerId === ownerId) || null;
+    return personalWorkspace;
+  }
 }

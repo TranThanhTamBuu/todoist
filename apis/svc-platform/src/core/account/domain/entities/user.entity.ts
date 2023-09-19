@@ -1,4 +1,4 @@
-import { Entity, EntityProps } from "@todoist/ddd";
+import { AggregateRoot, EntityProps } from "@todoist/ddd";
 
 export interface UserProps extends EntityProps {
   accountId: string;
@@ -7,7 +7,7 @@ export interface UserProps extends EntityProps {
   email: string;
 }
 
-export class User extends Entity<UserProps> {
+export class User extends AggregateRoot<UserProps> {
   constructor(props: UserProps) {
     super(props);
   }

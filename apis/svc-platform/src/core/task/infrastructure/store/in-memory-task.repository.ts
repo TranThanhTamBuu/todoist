@@ -11,4 +11,20 @@ export class InMemoryTaskRepository extends InMemoryRepository<Task> implements 
   constructor(@Inject(TASK_FIXTURES) private readonly taskFixtures: Task[]) {
     super(taskFixtures);
   }
+
+  async findByProjectId(projectId: string): Promise<Task[]> {
+    const result: Task[] = [];
+
+    const filterTasks = (tasks: Task[]) =>
+      tasks.forEach((task) => {
+        if (projectId === task.projectId) {
+          result.push(task);
+        }
+        filterTasks(task.subTask);
+      });
+
+    filterTasks(this.toArray());
+
+    return result;
+  }
 }
