@@ -2,7 +2,6 @@ import { Entity, EntityProps } from "@todoist/ddd";
 
 export interface PersonalWorkspaceProps extends EntityProps {
   ownerId: string;
-  projectIds: string[];
 }
 
 export class PersonalWorkspace extends Entity<PersonalWorkspaceProps> {
@@ -12,9 +11,5 @@ export class PersonalWorkspace extends Entity<PersonalWorkspaceProps> {
 
   get ownerId() {
     return this.props.ownerId;
-  }
-
-  get projectIds() {
-    return this.props.projectIds;
   }
 }

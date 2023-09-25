@@ -6,9 +6,9 @@ export interface TaskProps extends EntityProps {
   name: string;
   description?: string;
   dueDate?: Date;
-  subTask?: Task[];
-  assigneeIds: string[];
+  subTasks?: Task[];
   isCompleted?: boolean;
+  assigneeIds: string[];
 }
 
 export class Task extends Entity<TaskProps> {
@@ -36,8 +36,8 @@ export class Task extends Entity<TaskProps> {
     return this.props.dueDate;
   }
 
-  get subTask() {
-    return this.props.subTask;
+  get subTasks() {
+    return this.props.subTasks;
   }
 
   get assigneeIds() {

@@ -23,7 +23,6 @@ export class CreatePersonalWorkspaceCommandHandler {
     const personalWorkspace = await this.personalWorkspaceRepository.save(
       new PersonalWorkspace({
         ownerId: userId,
-        projectIds: [],
       }),
     );
 

@@ -5,13 +5,9 @@ import { CreatePersonalWorkspaceCommandHandler } from "./application/commands/cr
 import { CreatePersonalWorkspaceSagas } from "./application/commands/create-personal-workspace/create-personal-workspace.saga";
 import { UserEventsFactory } from "./application/proxy/bus/user-events.factory";
 import { UserEventsSagas } from "./application/proxy/bus/user-events.saga";
-import { PROJECT_PROXY } from "./application/proxy/project.proxy";
-import { GetPersonalWorkspaceQueryHandler } from "./application/queries/get-personal-workspace/get-personal-workspace.query";
 import { PERSONAL_WORKSPACE_REPOSITORY } from "./application/store/personal-workspace.repository";
-import { QueryBusProjectProxy } from "./infrastructure/proxy/query-bus-project.proxy";
 import { InMemoryPersonalWorkspaceRepository } from "./infrastructure/store/in-memory-personal-workspace.repository";
 import { PERSONAL_WORKSPACE_FIXTURES, personalWorkspaceFixtures } from "./infrastructure/store/personal-workspace.fixture";
-import { PersonalWorkspaceController } from "./infrastructure/web/personal-workspace.controller";
 
 const fixtures: Provider[] = [
   {
@@ -27,22 +23,17 @@ const repositories: Provider[] = [
   },
 ];
 
-const proxies: Provider[] = [
-  {
-    provide: PROJECT_PROXY,
-    useClass: QueryBusProjectProxy,
-  },
-];
+const proxies: Provider[] = [];
 
 const commands: Provider[] = [CreatePersonalWorkspaceCommandHandler];
 
-const queries: Provider[] = [GetPersonalWorkspaceQueryHandler];
+const queries: Provider[] = [];
 
 const sagas: Provider[] = [CreatePersonalWorkspaceSagas, UserEventsSagas];
 
 const factories: Provider[] = [UserEventsFactory];
 
-const controllers = [PersonalWorkspaceController];
+const controllers = [];
 
 @Module({
   imports: [CqrsModule],

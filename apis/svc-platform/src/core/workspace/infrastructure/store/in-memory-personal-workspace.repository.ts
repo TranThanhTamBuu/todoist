@@ -15,8 +15,8 @@ export class InMemoryPersonalWorkspaceRepository
     super(personalWorkspaceFixtures);
   }
 
-  async findOneByOwnerId(ownerId: string): Promise<PersonalWorkspace | null> {
-    const personalWorkspace = this.toArray().find((personalWorkspace) => personalWorkspace.ownerId === ownerId) || null;
+  async findOneByUserId(userId: string): Promise<PersonalWorkspace | null> {
+    const personalWorkspace = this.toArray().find((personalWorkspace) => personalWorkspace.ownerId === userId) || null;
     return personalWorkspace;
   }
 }

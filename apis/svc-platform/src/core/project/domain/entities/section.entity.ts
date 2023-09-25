@@ -1,7 +1,10 @@
 import { Entity, EntityProps } from "@todoist/ddd";
 
+import { Task } from "./task.entity";
+
 export interface SectionProps extends EntityProps {
   name: string;
+  tasks: Task[];
 }
 
 export class Section extends Entity<SectionProps> {
@@ -11,5 +14,9 @@ export class Section extends Entity<SectionProps> {
 
   get name() {
     return this.props.name;
+  }
+
+  get task() {
+    return this.props.tasks;
   }
 }
